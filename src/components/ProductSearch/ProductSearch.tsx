@@ -47,8 +47,8 @@ const ProductSearch: React.FC = () => {
       />
       <button onClick={handleSearch}>Search</button>
       <div>
-        {searchResults.map((product) => (
-          <div>
+        {searchResults?.map((product) => (
+          <div key={product.id}>
             <h2>{product.title}</h2>
             <img src={product.img_sml} alt={product.title}></img>
             <p>{product.dest}</p>
