@@ -36,6 +36,12 @@ const ProductSearch: React.FC = () => {
     setSearchResults(data.data);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div>
       <h1>Product Search</h1>
@@ -43,12 +49,16 @@ const ProductSearch: React.FC = () => {
         type="text"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Search for products"
+        aria-label="Search for products"
       />
-      <button onClick={handleSearch}>Search</button>
-      <div>
+      <button onClick={handleSearch} aria-label="Search button">
+        Search
+      </button>
+      <div role="region" aria-live="polite">
         {searchResults?.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} role="article">
             <h2>{product.title}</h2>
             <img src={product.img_sml} alt={product.title}></img>
             <p>{product.dest}</p>
