@@ -1,7 +1,12 @@
 import "./App.css";
+import ProductSearch from "./components/ProductSearch/ProductSearch";
 
 function App() {
-  return <>AT-TECH-TEST</>;
+  return (
+    <>
+      <ProductSearch />
+    </>
+  );
 }
 
 export default App;
