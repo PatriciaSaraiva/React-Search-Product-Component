@@ -71,18 +71,18 @@ const ProductSearch: React.FC = () => {
         </button>
       </div>
       {isLoading ? (
-        <p>Loading...</p>
+        <p className="loading-spinner">Loading...</p>
       ) : (
         <div className="results-container" role="region" aria-live="polite">
           {searchResults?.map((product) => (
-            <div key={product.id} role="article">
+            <div className="result-card" key={product.id} role="article">
               <h2 className="product-title">{product.title}</h2>
               <img
                 className="product-img"
                 src={product.img_sml}
                 alt={product.title}
               ></img>
-              <p className="product-desc">{product.dest}</p>
+              <p className="product-dest">{product.dest}</p>
             </div>
           ))}
         </div>
