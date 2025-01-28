@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ImSearch } from "react-icons/im";
+
 import "./ProductSearch.scss";
 
 export interface PriceDetail {
@@ -27,6 +28,7 @@ const ProductSearch: React.FC = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<ProductSearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSearch = async () => {
     setIsLoading(true);
@@ -37,7 +39,14 @@ const ProductSearch: React.FC = () => {
     );
 
     const data = await response.json();
-    setSearchResults(data.data);
+
+    if (data.err_desc) {
+      setError(data.err_desc);
+    } else {
+      setError(null);
+      setSearchResults(data.data);
+    }
+
     setIsLoading(false);
   };
 
@@ -70,6 +79,7 @@ const ProductSearch: React.FC = () => {
           Search
         </button>
       </div>
+      {error ? <div className="error-results">{error}</div> : null}
       {isLoading ? (
         <p className="loading-spinner">Loading...</p>
       ) : (
@@ -81,7 +91,7 @@ const ProductSearch: React.FC = () => {
                 className="product-img"
                 src={product.img_sml}
                 alt={product.title}
-              ></img>
+              />
               <p className="product-dest">{product.dest}</p>
             </div>
           ))}

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { it, describe, expect, vi } from "vitest";
+import { it, describe, expect, vi, beforeEach } from "vitest";
 import ProductSearch from "./ProductSearch";
 
 const mockProductData = {
@@ -34,20 +34,27 @@ const mockProductData = {
   ],
 };
 
-global.fetch = vi.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve(mockProductData),
-  })
-);
-
 describe("<ProductSearch />", () => {
-  it("renders Product Search component", () => {
-    render(<ProductSearch />);
-    const headingElement = screen.getByText(/Product Search/i);
-    expect(headingElement).toBeInTheDocument();
+  beforeEach(() => {
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(mockProductData),
+      })
+    );
   });
 
-  it("searches for products", async () => {
+  it("renders Product Search component", () => {
+    render(<ProductSearch />);
+
+    expect(
+      screen.getByRole("button", { name: /search button/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText(/search for products/i)
+    ).toBeInTheDocument();
+  });
+
+  it("searches and displays products", async () => {
     render(<ProductSearch />);
     const searchInput = screen.getByPlaceholderText(/Search for products/i);
     const searchButton = screen.getByRole("button", { name: /Search/i });
@@ -59,7 +66,68 @@ describe("<ProductSearch />", () => {
 
     await waitFor(() => {
       const productTitle = screen.getByText(/London Explorer Pass/i);
+
       expect(productTitle).toBeInTheDocument();
+    });
+  });
+
+  it("Loading State", () => {
+    render(<ProductSearch />);
+
+    const searchInput = screen.getByPlaceholderText(/Search for products/i);
+    const searchButton = screen.getByRole("button", { name: /Search/i });
+
+    fireEvent.change(searchInput, {
+      target: { value: "London Explorer Pass" },
+    });
+    fireEvent.click(searchButton);
+
+    expect(screen.getByText(/loading.../i)).toBeInTheDocument();
+  });
+
+  it("Does not display search results if there are not any returned from the api", async () => {
+    render(<ProductSearch />);
+
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve({ err_desc: "No results found" }),
+      })
+    );
+
+    const searchInput = screen.getByPlaceholderText(/Search for products/i);
+    const searchButton = screen.getByRole("button", { name: /Search/i });
+
+    fireEvent.change(searchInput, {
+      target: { value: "London Explorer Pass" },
+    });
+    fireEvent.click(searchButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/no results found/i)).toBeInTheDocument();
+    });
+  });
+
+  it("Accessibility", async () => {
+    render(<ProductSearch />);
+
+    const searchInput = screen.getByPlaceholderText(/Search for products/i);
+    const searchButton = screen.getByRole("button", { name: /Search/i });
+
+    fireEvent.change(searchInput, {
+      target: { value: "London Explorer Pass" },
+    });
+    fireEvent.click(searchButton);
+
+    expect(
+      screen.getByRole("button", { name: /search button/i })
+    ).toHaveAttribute("aria-label", "Search button");
+
+    await waitFor(() => {
+      expect(screen.getByRole("region")).toHaveAttribute("aria-live", "polite");
+    });
+
+    await waitFor(() => {
+      expect(screen.getByRole("article")).toBeInTheDocument();
     });
   });
 });
