@@ -1,8 +1,14 @@
-I approached building the product search functionality with a focus on clean, maintainable React code using TypeScript.
-My first step is to choose the library we want to use.
+## Document how you would explain to another developer the approach you would take to build a product search to match the criteria below
+
+My first step is to choose the library we want to use. I approached building the product search functionality with a focus on clean, maintainable React code using TypeScript.
+
 I suggest React, for a clean and maintainable code and TypeScript for type safety.
-First we should install Vite, React, TypeScript and SASS (for styling)
-I choose Vite because it provides extremely fast development and build times, while React’s component-based architecture is perfect for building an interactive search interface. TypeScript adds crucial type safety, which I leveraged to create strong interfaces for the API responses and prevent potential runtimes errors.
+
+First we should install Vite, React, TypeScript and SASS (for styling).
+
+I decided to use Vite because it provides extremely fast development and build times, while React’s component-based architecture is perfect for building an interactive search interface.
+
+TypeScript adds crucial type safety, which I leveraged to create strong interfaces for the API responses and prevent potential runtimes errors.
 For the:
 
 1. Component Structure:
@@ -38,7 +44,7 @@ const handleSearch = async () => {
 };
 ```
 
-- Built a robust fetch implementation with proper error handling
+- Built a fetch implementation with proper error handling
 - Used URL encoding for search parameters
 - Implemented loading states for better UX
 
