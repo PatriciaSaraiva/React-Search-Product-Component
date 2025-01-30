@@ -6,7 +6,7 @@ While I understand the company primarily uses PHP/Drupal, I consciously chose to
 
 Here's how the approaches differ:
 
-If I was building from `scratch (Current Implementation)`, I would have the freedom to choose the technology I would prefer, like I did for this exercise. I could build a self-contained component with its own state management, direct API integration through JavaScript fetch.
+If I was building from `scratch (Current Implementation)` and had the freedom to choose the technology used, I would prefer, like I did for this exercise. I could build a self-contained component with its own state management, direct API integration through JavaScript fetch.
 
 If I was `integrating with the existing system for Drupal`, I would need to consider Drupal's existing frontend architecture, but I could integrate the React component in two ways:
 
