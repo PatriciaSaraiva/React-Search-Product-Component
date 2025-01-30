@@ -1,14 +1,13 @@
 ## Document how you would explain to another developer the approach you would take to build a product search to match the criteria below
 
-My first step is to choose the library we want to use. I approached building the product search functionality with a focus on clean, maintainable React code using TypeScript.
-
-I suggest React, for a clean and maintainable code and TypeScript for type safety.
+My first step was to choose the library we wanted to use. I approached building the product search functionality with a focus on clean, maintainable React code using TypeScript.
 
 First we should install Vite, React, TypeScript and SASS (for styling).
 
 I decided to use Vite because it provides extremely fast development and build times, while React’s component-based architecture is perfect for building an interactive search interface.
 
 TypeScript adds crucial type safety, which I leveraged to create strong interfaces for the API responses and prevent potential runtimes errors.
+
 For the:
 
 1. Component Structure:
@@ -72,4 +71,6 @@ const handleSearch = async () => {
 - Included proper ARIA labels for accessibility
 - Created a clean, intuitive UI with search icon and button
 
-The implementation meets all requirements while maintaining best practices in React development, TypeScript, and web accessibility."
+The implementation meets all requirements while maintaining best practices in React development, TypeScript, and web accessibility.
+
+While the `ProductSearch` component could have been refactored to separate logic and visuals for better separation of concerns, it is a very simple and short file. In this case, we can leverage colocation to keep related code together, making it easier to manage and understand. This approach simplifies the development process and is suitable for smaller components where the benefits of separation of concerns might not outweigh the convenience of colocation.

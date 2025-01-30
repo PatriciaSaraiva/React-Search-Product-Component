@@ -6,17 +6,12 @@ While I understand the company primarily uses PHP/Drupal, I consciously chose to
 
 Here's how the approaches differ:
 
-If I was building from scratch (Current Implementation), I would have the freedom to choose the technology I would prefer, like I did for this exercise.
-I could build a self-contained component with its own state management, direct API integration through JavaScript fetch. Choose the styling, like SASS without need to be worried about if it is or not compatible with the existing system.
+If I was building from `scratch (Current Implementation)`, I would have the freedom to choose the technology I would prefer, like I did for this exercise. I could build a self-contained component with its own state management, direct API integration through JavaScript fetch.
 
-If I was integrating with the existing system for Drupal, I would need to consider Drupal's existing frontend architecture, but I could integrate the React component in two ways:
+If I was `integrating with the existing system for Drupal`, I would need to consider Drupal's existing frontend architecture, but I could integrate the React component in two ways:
 
 - As a custom Drupal block with proper library declarations or
 - Through Drupal's JavaScript behaviors system.
-
-and I needed to ensure CSS doesn't conflict with Drupal's theme.
-
-For Symfony I could use Webpack Encore for asset management, I would use Twig templates as component containers, might need to handle API calls server-side through Symfony's HTTP client and I would integrate with Symfony's routing system.
 
 The core search functionality would remain the same, but the implementation details would adapt to fit the host system's architecture and best practices. My current React implementation is actually advantageous for integration as it's built as a self-contained component that could be embedded into either system with minimal modifications.
 

@@ -1,8 +1,9 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { it, describe, expect, vi, beforeEach } from "vitest";
-import ProductSearch from "./ProductSearch";
+import { it, describe, expect, vi, beforeEach, Mock } from "vitest";
 
-const mockProductData = {
+import ProductSearch, { ProductSearchResult } from "./ProductSearch";
+
+const mockProductData: { data: ProductSearchResult[] } = {
   data: [
     {
       id: "213492",
@@ -40,7 +41,7 @@ describe("<ProductSearch />", () => {
       Promise.resolve({
         json: () => Promise.resolve(mockProductData),
       })
-    );
+    ) as Mock;
   });
 
   it("renders Product Search component", () => {
@@ -92,7 +93,7 @@ describe("<ProductSearch />", () => {
       Promise.resolve({
         json: () => Promise.resolve({ err_desc: "No results found" }),
       })
-    );
+    ) as Mock;
 
     const searchInput = screen.getByPlaceholderText(/Search for products/i);
     const searchButton = screen.getByRole("button", { name: /Search/i });
