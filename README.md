@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# Product Search Implementation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project implements a product search feature that interfaces with the ATD Travel Products API. Built with React, TypeScript, and Vite, it provides a responsive and user-friendly search interface for travel products.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
 
-## Expanding the ESLint configuration
+The project includes the following key files and directories:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `package.json`: Contains project metadata and dependencies.
+- `ProductSearch.tsx`: A React component for searching products.
+- `ProductSearch.scss`: Styles for the ProductSearch component.
 
-- Configure the top-level `parserOptions` property like this:
+## Quick Start
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+To start developing, clone the repository and install the dependencies:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- `Clone` the repository
+- `Install dependencies`: npm install
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Then, start the development server:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Start development server: `npm run dev`
+
+The available scripts in the package.json file are:
+
+- `dev`: Starts the development server using Vite.
+- `build`: Compiles TypeScript and builds the project for production using Vite.
+- `lint`: Runs ESLint to check for code quality issues.
+- `preview`: Previews the production build using Vite.
+- `test`: Runs the tests using Vitest.
+
+You can now open the project in your browser and start making changes.
+
+# Tech Questions
+
+The tech answers can be found here:
+
+- [Document how you would explain to another developer the approach you would take to build a product search to match the criteria below](./src/documents/QUESTION-1.md)
+- [Describe how your approach would differ (if at all) between building this from scratch to integrating it within an existing system (e.g Drupal/Symfony)](./src/documents/QUESTION-3.md)

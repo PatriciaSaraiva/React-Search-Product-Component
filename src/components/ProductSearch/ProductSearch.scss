@@ -1,0 +1,195 @@
+// Variables
+$primary-color: #1a4f7b;
+$secondary-color: #00496c;
+$background-light: #e2f2fe;
+$border-dark: #00273b;
+$hover-color: #01a1c9;
+$text-dark: #05406e;
+$text-light: #fff;
+
+// Breakpoints
+$mobile: 600px;
+$tablet: 900px;
+
+// Mixins
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin card-base {
+  border-radius: 4px;
+  padding: 10px 20px;
+}
+
+// Animations
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Reset and base styles
+body {
+  background-color: $text-light;
+}
+
+// Component styles
+.search {
+  &-title {
+    color: $text-dark;
+
+    @include mobile {
+      font-size: 18px;
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: $primary-color;
+  }
+
+  &-btn {
+    @include card-base;
+    background-color: $secondary-color;
+    color: $text-light;
+    max-width: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($hover-color, 10%);
+    }
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  min-width: 200px;
+
+  input {
+    @include card-base;
+    background-color: $background-light;
+    color: $primary-color;
+    border: 1px solid $border-dark;
+    padding-left: 40px;
+    min-width: 200px;
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: $primary-color;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $hover-color;
+    }
+  }
+}
+
+.results {
+  &-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.error-results {
+  color: $border-dark;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.result-card {
+  min-width: 0;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e4e4e4;
+  border-width: 1px 0 0 0;
+  border-radius: 16px;
+  padding: 1.6rem;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.product {
+  &-title {
+    color: $text-dark;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  &-img {
+    width: 100%;
+    min-width: 50px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  &-dest {
+    color: $text-dark;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+}
+
+.loading-spinner {
+  @include flex-center;
+  border: 8px solid $background-light;
+  border-top-color: $secondary-color;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
