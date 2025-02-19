@@ -33,9 +33,4 @@ The available scripts in the package.json file are:
 
 You can now open the project in your browser and start making changes.
 
-# Tech Questions
 
-The tech answers can be found here:
-
-- [Document how you would explain to another developer the approach you would take to build a product search to match the criteria below](./src/documents/QUESTION-1.md)
-- [Describe how your approach would differ (if at all) between building this from scratch to integrating it within an existing system (e.g Drupal/Symfony)](./src/documents/QUESTION-3.md)
